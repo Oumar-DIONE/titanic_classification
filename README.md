@@ -1,0 +1,1 @@
+Afin de pouvoir utiliser notre API, vous devez créer votre propre fichier de configuration à la racine du projet avec le nom config.yaml qui devra contenir votre jeton d'API, le chemin des jeux de tests,d'entrainement,..
