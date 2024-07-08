@@ -6,6 +6,7 @@ import yaml
 
 
 def import_yaml_config(config_path):
+    os.chdir("/home/onyxia/work/titanic_classification/Application_repo/configuration/")
     config_ = {}
     if os.path.exists(config_path):
         with open(config_path, 'r', encoding='utf-8') as file:
@@ -18,13 +19,13 @@ def import_yaml_config(config_path):
     
 def retrieve_data(config_file="config.yaml"):
     config = import_yaml_config(config_file)
-    TEST_FRACTION = float(config.get("test_fraction"))
+    test_fraction = float(config.get("test_fraction"))
     data_path = config["data_path"]
-    print(TEST_FRACTION)
+    print("test_fraction :", test_fraction)
 
 # lecture du fichier
     os.chdir(data_path)
-    Trainingdata = pd.read_csv("data.csv")
+    Trainingdata = pd.read_csv("raw/data.csv")
     Trainingdata.head()
     Trainingdata["Ticket"].str.split("/").str.len()
     Trainingdata["Name"].str.split(",").str.len()

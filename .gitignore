@@ -1,5 +1,0 @@
-# Ignorer le dossier _pycache_
-__pycache__/
-
-# Ignorer le fichier myfile.yaml
-config.yaml
