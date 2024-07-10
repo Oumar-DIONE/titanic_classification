@@ -3,7 +3,7 @@ import sys
 import argparse
 # Importer le module depuis src/data
 # Obtenir le chemin absolu du répertoire courant (où build_features.py est situé)
-current_dir = os.path.dirname(__file__)   # .../src/features
+current_dir = os.path.dirname(__file__)   # .../Application_repo/
 # Obtenir le chemin du parent du répertoire courant
 src = os.path.abspath(os.path.join(current_dir, 'src'))  # .../src/
 # Construire le chemin vers le sous-répertoire 'data' du parent

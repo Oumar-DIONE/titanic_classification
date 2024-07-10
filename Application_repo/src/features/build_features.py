@@ -11,14 +11,19 @@ from sklearn.compose import ColumnTransformer
 # Obtenir le chemin absolu du répertoire courant (où build_features.py est situé)
 current_dir = os.path.dirname(__file__)   # .../src/features
 # Obtenir le chemin du parent du répertoire courant
-parent_dir = os.path.abspath(os.path.join(current_dir, '..'))  # .../src/
+src = os.path.abspath(os.path.join(current_dir, '..'))  # .../src/
+Application_repo = os.path.dirname(src)  # .../Application_repo/
+# Construire le chemin vers le repertoire 'configuration' 
+config_dir = os.path.abspath(os.path.join(Application_repo, 'configuration'))
 # Construire le chemin vers le sous-répertoire 'data' du parent
-data_dir = os.path.abspath(os.path.join(parent_dir, 'data'))
-   # .../src/data
+data_dir = os.path.abspath(os.path.join(src, 'data')) # .../src/data
 # Ajouter 'data_dir' à 'sys.path' pour permettre l'importation des modules depuis 'src/data'
 sys.path.insert(0, data_dir)
+sys.path.insert(0, config_dir)
+
 
 import import_data
+import import_config
 
 
 numeric_transformer = Pipeline(
@@ -36,8 +41,8 @@ categorical_transformer = Pipeline(
 )
 
 
-def split_data(x, y, test_size_, train_path="train.csv", test_path="test.csv"):
-    config = import_data.import_yaml_config("config.yaml")
+def split_data(x, y, test_size_, train_path="train.csv", test_path="test.csv", config_file="config.yaml"):
+    config = import_config.import_yaml_config(config_file)
     data_path = config["data_path"]
     os.chdir(data_path)
     train_path = "processed/" + train_path

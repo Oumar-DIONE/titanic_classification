@@ -1,24 +1,25 @@
 import os
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import yaml
+# Obtenir le chemin absolu du répertoire courant (où build_features.py est situé)
+current_dir = os.path.dirname(__file__)   # .../src/data
+# Obtenir le chemin du parent du répertoire courant
+src = os.path.dirname(current_dir)  # ...Application_repo/src/
+Application_repo = os.path.dirname(src)  # .../Application_repo/
+
+# Construire le chemin vers les répertoire 'data' et 'configuration' 
+data_dir = os.path.abspath(os.path.join(Application_repo, 'data'))
+config_dir = os.path.abspath(os.path.join(Application_repo, 'configuration'))
+# Ajouter 'data_dir' à 'sys.path' pour permettre l'importation des modules depuis 'src/data'
+sys.path.insert(0, config_dir)
+sys.path.insert(0, data_dir)
+import import_config  
 
 
-def import_yaml_config(config_path):
-    os.chdir("/home/onyxia/work/titanic_classification/Application_repo/configuration/")
-    config_ = {}
-    if os.path.exists(config_path):
-        with open(config_path, 'r', encoding='utf-8') as file:
-            try:
-                config_ = yaml.safe_load(file)
-            except yaml.YAMLError as exc:
-                print(f"Erreur lors de la lecture du fichier YAML: {exc}")
-    return config_
-    
-    
 def retrieve_data(config_file="config.yaml"):
-    config = import_yaml_config(config_file)
+    config = import_config.import_yaml_config(config_file)
     test_fraction = float(config.get("test_fraction"))
     data_path = config["data_path"]
     print("test_fraction :", test_fraction)
