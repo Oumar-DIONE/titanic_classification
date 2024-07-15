@@ -45,6 +45,8 @@ data/
 # les fichiers de configurations
 configuration/
 *.yaml
+# le repertoire de l'environnement virtuel
+titanic_env/
 
 # Unit test / coverage reports
 htmlcov/
