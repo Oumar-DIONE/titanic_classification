@@ -20,7 +20,7 @@ data_dir = os.path.abspath(os.path.join(src, 'data')) # .../src/data
 sys.path.insert(0, data_dir)
 
 
-import import_data
+import upload_dowload_from_Minio
 
 
 numeric_transformer = Pipeline(
@@ -39,11 +39,9 @@ categorical_transformer = Pipeline(
 
 
 def split_data(x, y, test_size_, train_path="train.csv", test_path="test.csv", config_file="config.yaml"):
-    config = import_data.import_config.import_yaml_config(config_file)
+    config = upload_dowload_from_Minio.import_yaml_config(config_file)
     data_path = config["data_path"]
     os.chdir(data_path)
-    train_path = "processed/" + train_path
-    test_path = "processed/" + test_path
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size_)
     pd.concat([x_train, y_train]).to_csv(train_path)
     pd.concat([x_test, y_test]).to_csv(test_path)

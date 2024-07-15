@@ -42,6 +42,9 @@ pip-delete-this-directory.txt
 # les données
 *.csv
 data/
+# les fichiers de configurations
+configuration/
+*.yaml
 
 # Unit test / coverage reports
 htmlcov/
