@@ -1,0 +1,6 @@
+pandas
+matplotlib
+seaborn
+boto3
+pyyaml
+scikit_learn
