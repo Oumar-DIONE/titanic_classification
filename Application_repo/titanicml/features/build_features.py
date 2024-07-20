@@ -39,8 +39,10 @@ categorical_transformer = Pipeline(
 
 
 def split_data(x, y, test_size_, train_path="train.csv", test_path="test.csv", config_file="config.yaml"):
-    config = upload_dowload_from_Minio.import_yaml_config(config_file)
-    data_path = config["data_path"]
+    config = upload_dowload_from_Minio.import_yaml_config()
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Répertoire du script actuel
+    data_path = os.path.join(script_dir, '../../data/')  # Chemin relatif vers config.yaml
+   
     os.chdir(data_path)
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size_)
     pd.concat([x_train, y_train]).to_csv(train_path)
