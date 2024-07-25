@@ -7,14 +7,12 @@ from . import upload_dowload_from_Minio
 
 def retrieve_data(config_file="config.yaml", filename_="titanic_data.csv"):
     config = upload_dowload_from_Minio.import_yaml_config()
-    print("Configuration pour retrieve_data :", config)
     test_fraction = float(config.get("test_fraction"))
-    script_dir = os.path.dirname(os.path.abspath(__file__))  # Répertoire du script actuel
-    data_path_default_value = os.path.join(script_dir, '../../data/')  # Chemin relatif vers config.yaml
-    
-    data_path = config.get("data_path", data_path_default_value)  # Ajouter une valeur par défaut pour data_path
+    data_path_default_value ='work/titanic_classification/Application_repo/data'
+    data_dir = config.get("data_dir", data_path_default_value)
+    base_path = os.path.expanduser('~')  # Cela récupère le chemin de l'utilisateur (home directory)
+    data_path = os.path.join(base_path, data_dir)
     print("test_fraction :", test_fraction)
-
     # lecture du fichier
     os.chdir(data_path)
     # import data from S3

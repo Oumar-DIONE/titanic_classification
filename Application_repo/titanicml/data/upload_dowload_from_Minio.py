@@ -16,7 +16,9 @@ def initialize_minio(endpoint_url_, aws_access_key_id_, aws_secret_access_key_, 
 
 def import_yaml_config():
     script_dir = os.path.dirname(os.path.abspath(__file__))  # Répertoire du script actuel
-    config_path = os.path.join(script_dir, '../../configuration/config.yaml')  # Chemin relatif vers config.yaml
+    print("repertoire actuelle: ", script_dir)
+    base_path = os.path.expanduser('~')  # Cela récupère le chemin de l'utilisateur (home directory)
+    config_path = os.path.join(base_path, 'work/titanic_classification/Application_repo/configuration/config.yaml')  # Chemin relatif vers config.yaml
     
     print(f"Chemin absolu vers le fichier de configuration : {config_path}")
     
