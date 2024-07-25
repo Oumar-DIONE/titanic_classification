@@ -1,5 +1,7 @@
 import sys
 import os
+from pickle import dump
+
 
 # Ajouter le répertoire parent au chemin de recherche des modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -30,3 +32,7 @@ X = TrainingData.drop("Survived", axis="columns")
 X_train, y_train, X_test, y_test = build_features.split_data(X, y, test_size_=0.1)
 model = build_features.fit_rmfr(X_train, y_train, n_treesa=20)
 train_evaluate.assess_rdmf(X_train, y_train, X_test, y_test, model)
+# save the model
+# Here you can replace pickle with joblib or cloudpickle
+with open("classification_model.pkl", "wb") as f:
+    dump(model, f, protocol=5)

@@ -4,3 +4,5 @@ seaborn
 boto3
 pyyaml
 scikit_learn
+fastAPI
+uvicorn
