@@ -4,6 +4,8 @@ __pycache__/
 
 # C extensions
 *.so
+# Ignore train models
+*.pkl
 # Ignorer le dossier _pycache_
 __pycache__/
 

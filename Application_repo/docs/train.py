@@ -34,5 +34,15 @@ model = build_features.fit_rmfr(X_train, y_train, n_treesa=20)
 train_evaluate.assess_rdmf(X_train, y_train, X_test, y_test, model)
 # save the model
 # Here you can replace pickle with joblib or cloudpickle
-with open("classification_model.pkl", "wb") as f:
+# Chemin de sauvegarde du fichier
+base_path = os.path.expanduser('~')
+save_path = os.path.join(base_path, 'work/titanic_classification/Application_repo/models', 'classification_model.pkl')
+
+# Créez le répertoire s'il n'existe pas
+os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+# Sauvegarder le modèle
+with open(save_path, "wb") as f:
     dump(model, f, protocol=5)
+
+print(f"Modèle sauvegardé avec succès à l'emplacement : {save_path}")
